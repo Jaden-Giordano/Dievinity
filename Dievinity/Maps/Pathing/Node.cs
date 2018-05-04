@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dievinity.Utilities;
+using Microsoft.Xna.Framework;
 
 namespace Dievinity.Maps.Pathing {
     public class Node : IEquatable<Node> {
 
         public Node parent;
 
-        public Vector2i position;
+        public Point position;
 
         public int cost;
         public int distance;
@@ -19,7 +15,7 @@ namespace Dievinity.Maps.Pathing {
             get { return cost + distance;  }
         }
 
-        public Node(Node parent, Vector2i position, int cost, int distance) {
+        public Node(Node parent, Point position, int cost, int distance) {
             this.parent = parent;
             this.position = position;
             this.cost = cost;

@@ -1,0 +1,589 @@
+{
+    "width": 20,
+    "height": 20,
+    "tiles": [
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 0
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 0
+            },
+            "blocked": true
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 1
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 1
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 1
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 1
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 1
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 1
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 1
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 1
+            },
+            "blocked": false
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 2
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 2
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 2
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 2
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 2
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 2
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 2
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 2
+            },
+            "blocked": false
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 3
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 3
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 3
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 3
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 3
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 3
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 3
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 3
+            },
+            "blocked": false
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 4
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 4
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 4
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 4
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 4
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 4
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 4
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 4
+            },
+            "blocked": false
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 5
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 5
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 5
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 5
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 5
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 5
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 5
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 5
+            },
+            "blocked": false
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 6
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 6
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 6
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 6
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 6
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 6
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 6
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Ground",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 6
+            },
+            "blocked": false
+        },
+
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 7
+            },
+            "blocked": false
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 1,
+                "y": 7
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 2,
+                "y": 7
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 3,
+                "y": 7
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 4,
+                "y": 7
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 5,
+                "y": 7
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 6,
+                "y": 7
+            },
+            "blocked": true
+        },
+        {
+            "textureAtlas": "Walls",
+            "id": 0,
+            "position": {
+                "x": 7,
+                "y": 7
+            },
+            "blocked": true
+        }
+    ]
+}

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dievinity.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace Dievinity.Maps {
     public class Map {
@@ -20,39 +14,39 @@ namespace Dievinity.Maps {
             tiles = new Tile[width, height];
         }
 
-        private Vector2i ToWorldCoords(Vector2i position) {
-            return position - new Vector2i(width / 2, height / 2);
+        private Point ToWorldCoords(Point position) {
+            return position - new Point(width / 2, height / 2);
         }
 
-        private Vector2i ToArrayCoords(Vector2i position) {
-            return position + new Vector2i(width / 2, height / 2);
+        private Point ToArrayCoords(Point position) {
+            return position + new Point(width / 2, height / 2);
         }
 
-        public Tile GetTile(Vector2i position) {
-            if (position.x >= width / 2 || position.x < -width / 2 || position.y >= height / 2 || position.y < -height / 2) {
+        public Tile GetTile(Point position) {
+            if (position.X >= width / 2 || position.X < -width / 2 || position.Y >= height / 2 || position.Y < -height / 2) {
                 return null;
             }
 
-            Vector2i arrayCoords = ToArrayCoords(position);
-            return tiles[arrayCoords.x, arrayCoords.y];
+            Point arrayCoords = ToArrayCoords(position);
+            return tiles[arrayCoords.X, arrayCoords.Y];
         }
 
-        public void SetTile(Vector2i position, Tile tile) {
-            Vector2i arrayCoords = ToArrayCoords(position);
-            tiles[arrayCoords.x, arrayCoords.y] = tile;
+        public void SetTile(Point position, Tile tile) {
+            Point arrayCoords = ToArrayCoords(position);
+            tiles[arrayCoords.X, arrayCoords.Y] = tile;
         }
 
         public void Clear() {
             tiles = new Tile[width, height];
         }
 
-        public Vector2 GetActualPosition(Vector2i position) {
+        public static Vector2 GetActualPosition(Point position) {
             return position.ToVector2() * 16 * 3;
         }
 
-        public Vector2i GetCellPosition(Vector2 position) {
-            Vector2 newPostion = position / (16 * 3);
-            return new Vector2i((int) newPostion.X, (int) newPostion.Y);
+        public static Point GetCellPosition(Vector2 position) {
+            Vector2 newPosition = position / (16 * 3);
+            return newPosition.ToPoint();
         }
     }
 }

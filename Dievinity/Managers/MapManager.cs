@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MapFileProcessorLib;
-using Dievinity.Utilities;
 using Dievinity.Maps;
+using Microsoft.Xna.Framework;
 
 namespace Dievinity.Managers {
     public class MapManager {
@@ -28,7 +28,7 @@ namespace Dievinity.Managers {
             Map map = new Map(mapFile.width, mapFile.height);
 
             foreach (MapFileProcessorLib.Serialization.Tile tile in mapFile.tiles) {
-                Vector2i position = new Vector2i(tile.position.x, tile.position.y);
+                Point position = new Point(tile.position.x, tile.position.y);
                 Tile newTile = new Tile(AtlasManager.Instance.GetAtlas(tile.textureAtlas), tile.id, position, tile.blocked);
                 map.SetTile(position, newTile);
             }

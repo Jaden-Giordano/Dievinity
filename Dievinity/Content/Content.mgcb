@@ -67,3 +67,8 @@
 /processorParam:TextureFormat=Color
 /build:Entities/Player.png
 
+#begin Maps/larger.map
+/importer:MapFileImporter
+/processor:MapFileProcessor
+/build:Maps/larger.map
+

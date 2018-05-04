@@ -42,10 +42,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\Input\InputManager.cs" />
     <Compile Include="Managers\Input\MouseButtons.cs" />
-    <Compile Include="Scenes\PathTestingScene.cs" />
+    <Compile Include="Maps\Pathing\GhostLayer.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Managers\AtlasManager.cs" />
     <Compile Include="Managers\SceneManger.cs" />
@@ -58,8 +60,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Maps\Tile.cs" />
     <Compile Include="Readers\MapFileReader.cs" />
+    <Compile Include="Scenes\TurnBasedScene.cs" />
     <Compile Include="Utilities\Atlas.cs" />
-    <Compile Include="Utilities\Vector2i.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

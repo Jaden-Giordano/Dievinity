@@ -39,13 +39,17 @@ namespace Dievinity {
             AtlasManager.Instance.SaveAtlas("Debug", new Atlas(debugTexture, 16));
 
             Texture2D playerTexture = Content.Load<Texture2D>("Entities/Player");
-            Player player = new Player(new Vector2i(1, 1), playerTexture);
 
-            MapFile map = Content.Load<MapFile>("Maps/test");
+            MapFile map = Content.Load<MapFile>("Maps/larger");
             MapManager.Instance.SaveMap("test", map);
 
-            SceneManger.Instance.AddScene("TestingScene", new PathTestingScene(MapManager.Instance.GetMap("test"), player));
-            SceneManger.Instance.SetCurrent("TestingScene");
+            TurnBasedScene turnBased = new TurnBasedScene(MapManager.Instance.GetMap("test"));
+            Player player = new Player(turnBased, new Point(1, 1), playerTexture);
+
+            turnBased.AddEntities(new Entity[] { player });
+
+            SceneManger.Instance.AddScene("TurnBasedScene", turnBased);
+            SceneManger.Instance.SetCurrent("TurnBasedScene");
         }
 
         protected void Begin() {

@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dievinity.Utilities;
+using Microsoft.Xna.Framework;
 
 namespace Dievinity.Maps.Pathing {
     public class PathFinder {
 
         private Map map;
-        private Vector2i start;
-        private Vector2i end;
+        private Point start;
+        private Point end;
 
         private List<Node> openList;
         private List<Node> closedList;
 
-        public PathFinder(Vector2i start, Vector2i end, Map map) {
+        public PathFinder(Point start, Point end, Map map) {
             this.map = map;
             this.start = start;
             this.end = end;
@@ -24,18 +21,18 @@ namespace Dievinity.Maps.Pathing {
             closedList = new List<Node>();
         }
 
-        public Vector2i[] FindPath() {
+        public Point[] FindPath() {
             Tile startTile = map.GetTile(start);
             Tile endTile = map.GetTile(end);
             if (startTile == null || endTile == null || startTile.blocked || endTile.blocked) {
                 return null;
             }
 
-            Node startingNode = new Node(null, start, 0, Vector2i.MDistance(start, end) * 10);
+            Node startingNode = new Node(null, start, 0, (int) Vector2.Distance(start.ToVector2(), end.ToVector2()) * 10);
             openList.Add(startingNode);
 
             if (ProcessNextNode()) {
-                List<Vector2i> points = new List<Vector2i>();
+                List<Point> points = new List<Point>();
 
                 Node endNode = closedList.Find(node => node.position == end);
 
@@ -86,8 +83,8 @@ namespace Dievinity.Maps.Pathing {
                         cost = 14;
                     }
 
-                    Vector2i position = next.position + new Vector2i(i, j);
-                    Node node = new Node(next, position, next.cost + cost, Vector2i.MDistance(position, end) * 10);
+                    Point position = next.position + new Point(i, j);
+                    Node node = new Node(next, position, next.cost + cost, (int)Vector2.Distance(start.ToVector2(), end.ToVector2()) * 10);
                     Tile checkTile = map.GetTile(position);
                     if (checkTile != null && !checkTile.blocked && !closedList.Contains(node)) {
                         Node openListCheck = openList.Find(n => n.position == node.position);
