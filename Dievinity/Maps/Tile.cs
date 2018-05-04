@@ -7,7 +7,7 @@ using Dievinity.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Dievinity.Maps {
-    class Tile {
+    public class Tile {
 
         public Atlas atlas;
         public int id;

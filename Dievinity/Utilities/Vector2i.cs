@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace Dievinity.Utilities {
-    class Vector2i : IEquatable<Vector2i> {
+    public class Vector2i : IEquatable<Vector2i> {
 
         public int x, y;
 
@@ -17,6 +14,15 @@ namespace Dievinity.Utilities {
         public Vector2i(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+
+        public Vector2i(Vector2 other) {
+            this.x = (int)other.X;
+            this.y = (int)other.Y;
+        }
+
+        public Vector2 ToVector2() {
+            return new Vector2(x, y);
         }
 
         public static Vector2i Zero {

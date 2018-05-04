@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dievinity.Utilities;
 
 namespace Dievinity.Maps.Pathing {
-    class PathFinder {
+    public class PathFinder {
 
         private Map map;
         private Vector2i start;
@@ -31,7 +31,7 @@ namespace Dievinity.Maps.Pathing {
                 return null;
             }
 
-            Node startingNode = new Node(null, start, 0, Vector2i.Distance(start, end));
+            Node startingNode = new Node(null, start, 0, Vector2i.MDistance(start, end) * 10);
             openList.Add(startingNode);
 
             if (ProcessNextNode()) {
@@ -80,8 +80,14 @@ namespace Dievinity.Maps.Pathing {
                 for (int j = -1; j < 2; j += 1) {
                     if (i == 0 && j == 0) continue;
 
+                    int cost = 10;
+
+                    if (Math.Abs(i) == 1 && Math.Abs(j) == 1) {
+                        cost = 14;
+                    }
+
                     Vector2i position = next.position + new Vector2i(i, j);
-                    Node node = new Node(next, position, 10, Vector2i.Distance(position, end));
+                    Node node = new Node(next, position, next.cost + cost, Vector2i.MDistance(position, end) * 10);
                     Tile checkTile = map.GetTile(position);
                     if (checkTile != null && !checkTile.blocked && !closedList.Contains(node)) {
                         Node openListCheck = openList.Find(n => n.position == node.position);

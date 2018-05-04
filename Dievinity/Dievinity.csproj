@@ -42,7 +42,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Managers\Input\InputManager.cs" />
+    <Compile Include="Managers\Input\MouseButtons.cs" />
+    <Compile Include="Scenes\PathTestingScene.cs" />
+    <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Managers\AtlasManager.cs" />
+    <Compile Include="Managers\SceneManger.cs" />
     <Compile Include="Maps\Map.cs" />
     <Compile Include="Managers\MapManager.cs" />
     <Compile Include="Maps\Pathing\Node.cs" />

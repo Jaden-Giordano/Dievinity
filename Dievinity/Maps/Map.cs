@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dievinity.Utilities;
+using Microsoft.Xna.Framework;
 
 namespace Dievinity.Maps {
-    class Map {
+    public class Map {
 
         private Tile[,] tiles;
 
@@ -43,6 +44,15 @@ namespace Dievinity.Maps {
 
         public void Clear() {
             tiles = new Tile[width, height];
+        }
+
+        public Vector2 GetActualPosition(Vector2i position) {
+            return position.ToVector2() * 16 * 3;
+        }
+
+        public Vector2i GetCellPosition(Vector2 position) {
+            Vector2 newPostion = position / (16 * 3);
+            return new Vector2i((int) newPostion.X, (int) newPostion.Y);
         }
     }
 }

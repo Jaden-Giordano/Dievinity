@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Dievinity.Utilities {
-    class Atlas {
+    public class Atlas {
 
         private Texture2D texture;
 
@@ -25,7 +25,7 @@ namespace Dievinity.Utilities {
             this.cellSize = cellSize;
         }
 
-        public void Draw(SpriteBatch spriteBatch, int index, Vector2 position, int scale = 1) {
+        public void Draw(SpriteBatch spriteBatch, Vector2 camera, int index, Vector2 position, int scale = 1) {
             int row = (int) ((float) index / (float) Columns);
             int column = index % Columns;
 
@@ -34,7 +34,8 @@ namespace Dievinity.Utilities {
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
 
-            spriteBatch.Draw(texture, destination, source, Color.White);
+            // spriteBatch.Draw(texture, destination, source, Color.White);
+            spriteBatch.Draw(texture, (position * 16 * scale) - camera, source, Color.White, 0, Vector2.Zero, Vector2.One * scale, SpriteEffects.None, 0);
 
             spriteBatch.End();
         }

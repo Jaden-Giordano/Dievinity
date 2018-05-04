@@ -4,7 +4,7 @@ using Dievinity.Utilities;
 using Dievinity.Maps;
 
 namespace Dievinity.Managers {
-    class MapManager {
+    public class MapManager {
 
         private static MapManager instance;
 

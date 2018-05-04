@@ -1,20 +1,17 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Dievinity.Utilities;
-using Dievinity.Maps;
 using Dievinity.Managers;
-using Dievinity.Maps.Pathing;
+using Dievinity.Scenes;
 using MapFileProcessorLib;
+using Dievinity.Entities;
+using Dievinity.Managers.Input;
 
 namespace Dievinity {
     public class Dievinity : Game {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Map world;
-        Map debugWorld;
 
         bool first = true;
 
@@ -25,8 +22,6 @@ namespace Dievinity {
 
         protected override void Initialize() {
             IsMouseVisible = true;
-
-            world = new Map(20, 20);
 
             base.Initialize();
         }
@@ -43,13 +38,27 @@ namespace Dievinity {
             Texture2D debugTexture = Content.Load<Texture2D>("Atlases/Debug");
             AtlasManager.Instance.SaveAtlas("Debug", new Atlas(debugTexture, 16));
 
+            Texture2D playerTexture = Content.Load<Texture2D>("Entities/Player");
+            Player player = new Player(new Vector2i(1, 1), playerTexture);
+
             MapFile map = Content.Load<MapFile>("Maps/test");
             MapManager.Instance.SaveMap("test", map);
+
+            SceneManger.Instance.AddScene("TestingScene", new PathTestingScene(MapManager.Instance.GetMap("test"), player));
+            SceneManger.Instance.SetCurrent("TestingScene");
         }
 
         protected void Begin() {
-            world = MapManager.Instance.GetMap("test");
-            debugWorld = new Map(world.width, world.height);
+            SceneManger.Instance.Begin();
+        }
+
+        protected void Input(GameTime gameTime) {
+            InputManager.Instance.ProcessInput();
+
+            SceneManger.Instance.Input(gameTime);
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
         }
 
         protected override void Update(GameTime gameTime) {
@@ -58,24 +67,9 @@ namespace Dievinity {
                 Begin();
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            Input(gameTime);
 
-            Point mousePosition = Mouse.GetState().Position;
-
-            Vector2i cell = new Vector2i(mousePosition.X / (16 * 4), mousePosition.Y / (16 * 4));
-
-            PathFinder pf = new PathFinder(new Vector2i(1, 1), cell, world);
-            Vector2i[] path = pf.FindPath();
-
-            debugWorld.Clear();
-
-            if (path != null) {
-                foreach (Vector2i point in path) {
-                    Tile debugTile = new Tile(AtlasManager.Instance.GetAtlas("Debug"), 0, point);
-                    debugWorld.SetTile(point, debugTile);
-                }
-            }
+            SceneManger.Instance.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -83,19 +77,7 @@ namespace Dievinity {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            for (int x = -world.width / 2; x < world.width / 2; x += 1) {
-                for (int y = -world.height / 2; y < world.height / 2; y += 1) {
-                    Tile tile = world.GetTile(new Vector2i(x, y));
-                    if (tile != null) {
-                        tile.atlas.Draw(spriteBatch, tile.id, new Vector2(x, y), 4);
-                    }
-
-                    Tile debugTile = debugWorld.GetTile(new Vector2i(x, y));
-                    if (debugTile != null) {
-                        debugTile.atlas.Draw(spriteBatch, debugTile.id, new Vector2(x, y), 4);
-                    }
-                }
-            }
+            SceneManger.Instance.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }

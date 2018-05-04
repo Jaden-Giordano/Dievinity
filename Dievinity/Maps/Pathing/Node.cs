@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dievinity.Utilities;
 
 namespace Dievinity.Maps.Pathing {
-    class Node : IEquatable<Node> {
+    public class Node : IEquatable<Node> {
 
         public Node parent;
 

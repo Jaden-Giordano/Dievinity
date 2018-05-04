@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Dievinity.Managers {
-    class AtlasManager {
+    public class AtlasManager {
 
         private static AtlasManager instance;
 
