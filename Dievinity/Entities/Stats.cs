@@ -7,28 +7,25 @@ using System.Threading.Tasks;
 namespace Dievinity.Entities {
     public class Stats : IComparable<Stats> {
 
-        protected int initiative;
-        public int Initiative {
-            get { return initiative; }
-            set { initiative = value; }
-        }
+        public int Initiative { get; set; }
 
-        protected int maxActionPoints;
-        public int MaxActionPoints {
-            get { return maxActionPoints; }
-            set { maxActionPoints = value; }
-        }
+        public int MaxActionPoints { get; set; }
 
-        protected int actionPoints;
+        private int actionPoints;
         public int ActionPoints {
             get { return actionPoints; }
-            set { actionPoints = value; }
+            set {
+                actionPoints = value;
+                if (actionPoints > MaxActionPoints) {
+                    actionPoints = MaxActionPoints;
+                }
+            }
         }
 
         public Stats() {
-            this.initiative = 1;
-            this.maxActionPoints = 4;
-            this.actionPoints = 4;
+            Initiative = 1;
+            MaxActionPoints = 4;
+            ActionPoints = 4;
         }
 
         public int CompareTo(Stats other) {

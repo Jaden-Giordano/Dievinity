@@ -1,15 +1,9 @@
-﻿using Dievinity.Managers;
-using Dievinity.Maps;
+﻿using Dievinity.Maps;
 using Dievinity.Maps.Pathing;
 using Dievinity.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dievinity.Entities {
     public class MovingEntity : Entity {
@@ -50,10 +44,10 @@ namespace Dievinity.Entities {
             }
         }
 
-        protected virtual void ExecuteMovement(Point target) {
+        protected virtual bool ExecuteMovement(Point target) {
             Tile targetTile = parentScene.Map.GetTile(target);
-            if (targetTile == null || targetTile.blocked || parentScene.Map.IsBlockedByEntity(target)) {
-                return;
+            if (targetTile == null || targetTile.blocked || parentScene.IsBlockedByEntity(target)) {
+                return false;
             }
 
             Point cellPosition = Map.GetCellPosition(Position);
@@ -62,10 +56,13 @@ namespace Dievinity.Entities {
             PathFinder pf = new PathFinder(cellPosition, targetCellPosition, parentScene.Map);
             movementPath = pf.FindPath();
 
-            if (movementPath.Length <= Stats.ActionPoints) {
+            if (movementPath != null && movementPath.Length <= Stats.ActionPoints) {
                 Stats.ActionPoints -= movementPath.Length;
                 moving = true;
+                return true;
             }
+
+            return false;
         }
 
         protected virtual void FinishedMovement() {

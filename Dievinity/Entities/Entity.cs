@@ -24,12 +24,9 @@ namespace Dievinity.Entities {
             set { stats = value; }
         }
 
-        public bool turnFinished;
-
         public Entity(Scene parentScene) {
             this.parentScene = parentScene;
             Position = Vector2.Zero;
-            turnFinished = true;
             stats = new Stats();
         }
 
@@ -37,7 +34,6 @@ namespace Dievinity.Entities {
             this.parentScene = parentScene;
             this.position = position;
             this.texture = texture;
-            turnFinished = true;
             stats = new Stats();
         }
 
@@ -45,15 +41,10 @@ namespace Dievinity.Entities {
             this.parentScene = parentScene;
             this.position = Map.GetActualPosition(position);
             this.texture = texture;
-            turnFinished = true;
             stats = new Stats();
         }
 
         public virtual void Update(GameTime gameTime) {
-
-        }
-
-        public virtual void TurnUpdate(GameTime gameTime) {
 
         }
 

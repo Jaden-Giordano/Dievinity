@@ -42,9 +42,11 @@ namespace Dievinity {
             Texture2D enemyTexture = Content.Load<Texture2D>("Entities/Enemy");
 
             MapFile map = Content.Load<MapFile>("Maps/larger");
-            MapManager.Instance.SaveMap("test", map);
 
-            TurnBasedScene turnBased = new TurnBasedScene(MapManager.Instance.GetMap("test"));
+            TurnBasedScene turnBased = new TurnBasedScene();
+            MapManager.Instance.SaveMap("test", turnBased, map);
+            turnBased.SetMap(MapManager.Instance.GetMap("test"));
+
             Player player = new Player(turnBased, new Point(2, 2), playerTexture);
             Enemy enemy = new Enemy(turnBased, new Point(5, 4), enemyTexture);
             Enemy enemy2 = new Enemy(turnBased, new Point(5, 1), enemyTexture);

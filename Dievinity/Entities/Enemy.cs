@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Dievinity.Entities {
-    public class Enemy : MovingEntity {
+    public class Enemy : TurnBasedEntity {
 
         public Enemy(Scene parentScene, Point position, Texture2D texture) : base(parentScene, position, texture) {
-            Stats.Initiative = 2;
+            Stats.Initiative = 1;
         }
 
         public override void TurnUpdate(GameTime gameTime) {
@@ -29,17 +29,21 @@ namespace Dievinity.Entities {
                         }
 
                         Tile adjacent = parentScene.Map.GetTile(playerCellPosition + new Point(i, j));
-                        if (adjacent != null && !adjacent.blocked && !parentScene.Map.IsBlockedByEntity(adjacent.position)) {
+                        if (adjacent != null && !adjacent.blocked && !parentScene.IsBlockedByEntity(adjacent.position)) {
                             selection = adjacent.position;
                             selectionFound = true;
 
-                            break;
+                            if (ExecuteMovement(selection)) {
+                                break;
+                            } else {
+                                selectionFound = false;
+                            }
                         }
                     }
                 }
 
-                if (selectionFound) {
-                    ExecuteMovement(selection);
+                if (!selectionFound) {
+                    TurnFinished = true;
                 }
             }
         }
@@ -47,8 +51,8 @@ namespace Dievinity.Entities {
         protected override void FinishedMovement() {
             base.FinishedMovement();
 
-            if (!turnFinished) {
-                turnFinished = true;
+            if (!TurnFinished) {
+                TurnFinished = true;
             }
         }
     }

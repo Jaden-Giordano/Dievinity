@@ -88,7 +88,7 @@ namespace Dievinity.Maps.Pathing {
                     Point position = next.position + new Point(i, j);
                     Node node = new Node(next, position, next.cost + cost, (int)Vector2.Distance(start.ToVector2(), end.ToVector2()) * 10);
                     Tile checkTile = map.GetTile(position);
-                    if (checkTile != null && !checkTile.blocked && !closedList.Contains(node) && !map.IsBlockedByEntity(position)) {
+                    if (checkTile != null && !checkTile.blocked && !closedList.Contains(node) && !map.ParentScene.IsBlockedByEntity(position)) {
                         Node openListCheck = openList.Find(n => n.position == node.position);
                         if (openListCheck != null && openListCheck.Score < next.Score) {
                             return ProcessNextNode(openListCheck);

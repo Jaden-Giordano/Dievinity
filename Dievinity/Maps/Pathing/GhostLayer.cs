@@ -1,4 +1,5 @@
 ﻿using Dievinity.Managers;
+using Dievinity.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -7,8 +8,8 @@ namespace Dievinity.Maps.Pathing {
 
         private Map debugLayer;
 
-        public GhostLayer(int width, int height) {
-            debugLayer = new Map(width, height);
+        public GhostLayer(Scene parent, int width, int height) {
+            debugLayer = new Map(parent, width, height);
         }
 
         public void DrawPath(Point[] path, int id) {

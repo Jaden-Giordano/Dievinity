@@ -46,7 +46,9 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\MovingEntity.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\State.cs" />
     <Compile Include="Entities\Stats.cs" />
+    <Compile Include="Entities\TurnBasedEntity.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\Input\InputManager.cs" />
     <Compile Include="Managers\Input\MouseButtons.cs" />

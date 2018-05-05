@@ -2,6 +2,7 @@
 using MapFileProcessorLib;
 using Dievinity.Maps;
 using Microsoft.Xna.Framework;
+using Dievinity.Scenes;
 
 namespace Dievinity.Managers {
     public class MapManager {
@@ -24,8 +25,8 @@ namespace Dievinity.Managers {
             maps = new Dictionary<string, Map>();
         }
 
-        public void SaveMap(string mapName, MapFile mapFile) {
-            Map map = new Map(mapFile.width, mapFile.height);
+        public void SaveMap(string mapName, Scene parent, MapFile mapFile) {
+            Map map = new Map(parent, mapFile.width, mapFile.height);
 
             foreach (MapFileProcessorLib.Serialization.Tile tile in mapFile.tiles) {
                 Point position = new Point(tile.position.x, tile.position.y);

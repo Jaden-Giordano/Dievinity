@@ -3,6 +3,7 @@ using Dievinity.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Dievinity.Scenes {
     public class Scene {
@@ -21,9 +22,12 @@ namespace Dievinity.Scenes {
             }
         }
 
-        public Scene(Map map) {
-            this.map = map;
+        public Scene() {
             entities = new List<Entity>();
+        }
+
+        public virtual void SetMap(Map map) {
+            this.map = map;
         }
 
         public virtual void AddEntities(Entity[] entities) {
@@ -40,6 +44,21 @@ namespace Dievinity.Scenes {
             return null;
         }
 
+        public bool IsBlockedByEntity(Point position) {
+            Entity entity = GetEntityAt(position);
+            return entity != null;
+        }
+
+        public Entity GetEntityAt(Point position) {
+            Entity[] all = (from e in Entities where Map.GetCellPosition(e.position) == position select e).ToArray();
+
+            if (all.Length > 0) {
+                return all[0];
+            }
+
+            return null;
+        }
+
         public virtual void Begin() {
 
         }
@@ -49,7 +68,9 @@ namespace Dievinity.Scenes {
         }
 
         public virtual void Update(GameTime gameTime) {
-
+            foreach (Entity i in entities) {
+                i.Update(gameTime);
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) {
