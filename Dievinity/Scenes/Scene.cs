@@ -1,7 +1,9 @@
 ﻿using Dievinity.Entities;
+using Dievinity.Managers;
 using Dievinity.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -73,13 +75,13 @@ namespace Dievinity.Scenes {
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch) {
+        public virtual void Draw() {
             if (map != null) {
                 for (int x = -map.width / 2; x < map.width / 2; x += 1) {
                     for (int y = -map.height / 2; y < map.height / 2; y += 1) {
                         Tile tile = map.GetTile(new Point(x, y));
                         if (tile != null) {
-                            tile.atlas.Draw(spriteBatch, tile.id, tile.position.ToVector2(), 3);
+                            Renderer.Instance.Draw(AtlasManager.Instance.CreateAtlas(tile.atlas, tile.id, tile.position.ToVector2(), 3));
                         }
                     }
                 }

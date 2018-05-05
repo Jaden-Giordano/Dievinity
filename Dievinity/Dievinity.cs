@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Dievinity.Utilities;
+using Dievinity.Graphics;
 using Dievinity.Managers;
 using Dievinity.Scenes;
 using MapFileProcessorLib;
@@ -30,13 +30,13 @@ namespace Dievinity {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             Texture2D floorTexture = Content.Load<Texture2D>("Atlases/Ground");
-            AtlasManager.Instance.SaveAtlas("Ground", new Atlas(floorTexture, 16));
+            AtlasManager.Instance.SaveAtlas("Ground", floorTexture);
 
             Texture2D wallTexture = Content.Load<Texture2D>("Atlases/Walls");
-            AtlasManager.Instance.SaveAtlas("Walls", new Atlas(wallTexture, 16));
+            AtlasManager.Instance.SaveAtlas("Walls", wallTexture);
 
-            Texture2D debugTexture = Content.Load<Texture2D>("Atlases/Debug");
-            AtlasManager.Instance.SaveAtlas("Debug", new Atlas(debugTexture, 16));
+            Texture2D ghostTexture = Content.Load<Texture2D>("Atlases/Ghost");
+            AtlasManager.Instance.SaveAtlas("Ghost", ghostTexture);
 
             Texture2D playerTexture = Content.Load<Texture2D>("Entities/Player");
             Texture2D enemyTexture = Content.Load<Texture2D>("Entities/Enemy");
@@ -86,7 +86,9 @@ namespace Dievinity {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            SceneManager.Instance.Draw(spriteBatch);
+            SceneManager.Instance.Draw();
+
+            Renderer.Instance.DrawAllSprites(spriteBatch);
 
             base.Draw(gameTime);
         }

@@ -48,16 +48,12 @@ namespace Dievinity.Entities {
 
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch) {
+        public virtual void Draw() {
             if (texture != null) {
                 Point screenPosition = (Position - Camera.Instance.position).ToPoint();
                 Rectangle destination = new Rectangle(screenPosition.X, screenPosition.Y, texture.Width * 3, texture.Height * 3);
 
-                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
-
-                spriteBatch.Draw(texture, destination, Color.White);
-
-                spriteBatch.End();
+                Renderer.Instance.Draw(new Graphics.Sprite(texture, Position, 3, 1));
             }
         }
 

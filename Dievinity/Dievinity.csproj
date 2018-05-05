@@ -49,9 +49,11 @@
     <Compile Include="Entities\State.cs" />
     <Compile Include="Entities\Stats.cs" />
     <Compile Include="Entities\TurnBasedEntity.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\Input\InputManager.cs" />
     <Compile Include="Managers\Input\MouseButtons.cs" />
+    <Compile Include="Managers\Renderer.cs" />
     <Compile Include="Maps\Pathing\GhostLayer.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Managers\AtlasManager.cs" />
@@ -66,7 +68,7 @@
     <Compile Include="Maps\Tile.cs" />
     <Compile Include="Readers\MapFileReader.cs" />
     <Compile Include="Scenes\TurnBasedScene.cs" />
-    <Compile Include="Utilities\Atlas.cs" />
+    <Compile Include="Graphics\Atlas.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -30,7 +30,7 @@ namespace Dievinity.Managers {
 
             foreach (MapFileProcessorLib.Serialization.Tile tile in mapFile.tiles) {
                 Point position = new Point(tile.position.x, tile.position.y);
-                Tile newTile = new Tile(AtlasManager.Instance.GetAtlas(tile.textureAtlas), tile.id, position, tile.blocked);
+                Tile newTile = new Tile(tile.textureAtlas, tile.id, position, tile.blocked);
                 map.SetTile(position, newTile);
             }
 

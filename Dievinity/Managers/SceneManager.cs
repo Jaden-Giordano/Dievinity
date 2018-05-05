@@ -63,8 +63,8 @@ namespace Dievinity.Managers {
             GetCurrent().Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
-            GetCurrent().Draw(spriteBatch);
+        public void Draw() {
+            GetCurrent().Draw();
         }
 
     }

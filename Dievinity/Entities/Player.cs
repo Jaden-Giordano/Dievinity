@@ -79,6 +79,7 @@ namespace Dievinity.Entities {
                     && parentScene.IsBlockedByEntity(mouseCellPosition)) {
                     ghostPath = new Point[] { mouseCellPosition };
 
+                    ghost.Color = Color.Red;
                     ghost.DrawPath(ghostPath, 0);
 
                     if (InputManager.Instance.GetMouseReleased(MouseButtons.Left)) {
@@ -88,10 +89,10 @@ namespace Dievinity.Entities {
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch) {
-            base.Draw(spriteBatch);
+        public override void Draw() {
+            base.Draw();
 
-            ghost.Draw(spriteBatch);
+            ghost.Draw();
         }
     }
 }

@@ -31,11 +31,11 @@ namespace Dievinity.Scenes {
             base.Update(gameTime);
         }
 
-        public override void Draw(SpriteBatch spriteBatch) {
-            base.Draw(spriteBatch);
+        public override void Draw() {
+            base.Draw();
 
             foreach (Entity i in entities) {
-                i.Draw(spriteBatch);
+                i.Draw();
             }
         }
 
