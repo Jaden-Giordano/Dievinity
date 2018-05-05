@@ -45,10 +45,11 @@ namespace Dievinity {
             MapManager.Instance.SaveMap("test", map);
 
             TurnBasedScene turnBased = new TurnBasedScene(MapManager.Instance.GetMap("test"));
-            Player player = new Player(turnBased, new Point(1, 1), playerTexture);
+            Player player = new Player(turnBased, new Point(2, 2), playerTexture);
             Enemy enemy = new Enemy(turnBased, new Point(5, 4), enemyTexture);
+            Enemy enemy2 = new Enemy(turnBased, new Point(5, 1), enemyTexture);
 
-            turnBased.AddEntities(new Entity[] { player, enemy });
+            turnBased.AddEntities(new Entity[] { player, enemy, enemy2 });
 
             SceneManager.Instance.AddScene("TurnBasedScene", turnBased);
             SceneManager.Instance.SetCurrent("TurnBasedScene");

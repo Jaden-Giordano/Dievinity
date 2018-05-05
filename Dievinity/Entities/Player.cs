@@ -34,7 +34,7 @@ namespace Dievinity.Entities {
             base.TurnUpdate(gameTime);
 
             if (!moving) {
-                Point playerCellPosition = Map.GetCellPosition(position);
+                Point playerCellPosition = Map.GetCellPosition(Position);
                 Point mouseCellPosition = Map.GetCellPosition(Mouse.GetState().Position.ToVector2() - Camera.Instance.position);
                 if (ghostPath == null || playerCellPosition != ghostStart || mouseCellPosition != ghostDestination) {
                     PathFinder pf = new PathFinder(playerCellPosition, mouseCellPosition, parentScene.Map);
@@ -44,7 +44,15 @@ namespace Dievinity.Entities {
 
                     ghost.Clear();
 
-                    ghost.DrawPath(ghostPath, 0);
+                    if (ghostPath != null) {
+                        List<Point> tmp = new List<Point>(ghostPath);
+                        tmp.RemoveAt(0);
+                        ghostPath = tmp.ToArray();
+
+                        if (ghostPath.Length + 1 <= Stats.ActionPoints) {
+                            ghost.DrawPath(ghostPath, 0);
+                        }
+                    }
                 }
 
                 if (InputManager.Instance.GetMouseReleased(MouseButtons.Left)) {

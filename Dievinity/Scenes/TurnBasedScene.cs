@@ -11,10 +11,6 @@ namespace Dievinity.Scenes {
         private int currentTurn;
 
         public TurnBasedScene(Map map) : base(map) {
-            this.entities = new List<Entity>();
-
-            // TODO: Sort the players.
-
             currentTurn = 0;
         }
 
@@ -25,7 +21,9 @@ namespace Dievinity.Scenes {
 
             if (current.turnFinished) {
                 currentTurn = (currentTurn + 1) % entities.Count;
-                entities[currentTurn].turnFinished = false;
+                current = entities[currentTurn];
+                current.turnFinished = false;
+                current.Stats.ActionPoints = current.Stats.MaxActionPoints;
             } else {
                 current.TurnUpdate(gameTime);
             }
@@ -41,6 +39,12 @@ namespace Dievinity.Scenes {
             foreach (Entity i in entities) {
                 i.Draw(spriteBatch);
             }
+        }
+
+        public override void AddEntities(Entity[] entities) {
+            base.AddEntities(entities);
+
+            this.entities.Sort();
         }
     }
 }

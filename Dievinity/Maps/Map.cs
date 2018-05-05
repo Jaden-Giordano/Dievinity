@@ -36,7 +36,7 @@ namespace Dievinity.Maps {
         public bool IsBlockedByEntity(Point position) {
             bool blocked = false;
             foreach (Entity e in SceneManager.Instance.GetCurrent().Entities) {
-                if (Map.GetCellPosition(e.position) == position) {
+                if (Map.GetCellPosition(e.Position) == position) {
                     blocked = true;
                     break;
                 }

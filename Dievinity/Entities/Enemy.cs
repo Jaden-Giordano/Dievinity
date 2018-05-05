@@ -8,7 +8,7 @@ namespace Dievinity.Entities {
     public class Enemy : MovingEntity {
 
         public Enemy(Scene parentScene, Point position, Texture2D texture) : base(parentScene, position, texture) {
-
+            Stats.Initiative = 2;
         }
 
         public override void TurnUpdate(GameTime gameTime) {
@@ -16,7 +16,7 @@ namespace Dievinity.Entities {
 
             Player player = parentScene.GetPlayer();
             if (!moving && player != null) {
-                Point playerCellPosition = Map.GetCellPosition(player.position);
+                Point playerCellPosition = Map.GetCellPosition(player.Position);
 
                 bool selectionFound = false;
                 Point selection = Point.Zero;

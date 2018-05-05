@@ -26,7 +26,7 @@ namespace Dievinity.Scenes {
             entities = new List<Entity>();
         }
 
-        public void AddEntities(Entity[] entities) {
+        public virtual void AddEntities(Entity[] entities) {
             this.entities.AddRange(entities);
         }
 

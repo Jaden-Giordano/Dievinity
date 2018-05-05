@@ -30,8 +30,8 @@ namespace Dievinity.Entities {
 
             if (moving) {
                 if (movementPath.Length > 0) {
-                    if (Vector2.Distance(position, Map.GetActualPosition(movementPath[0])) <= 2.5f) {
-                        position = Map.GetActualPosition(movementPath[0]);
+                    if (Vector2.Distance(Position, Map.GetActualPosition(movementPath[0])) <= 2.5f) {
+                        Position = Map.GetActualPosition(movementPath[0]);
 
                         List<Point> tmp = new List<Point>(movementPath);
                         tmp.RemoveAt(0);
@@ -39,8 +39,8 @@ namespace Dievinity.Entities {
                     }
 
                     if (movementPath.Length > 0) {
-                        Vector2 direction = Vector2.Normalize(Map.GetActualPosition(movementPath[0]) - position);
-                        position += direction * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        Vector2 direction = Vector2.Normalize(Map.GetActualPosition(movementPath[0]) - Position);
+                        Position += direction * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                     } else {
                         FinishedMovement();
                     }
@@ -51,12 +51,21 @@ namespace Dievinity.Entities {
         }
 
         protected virtual void ExecuteMovement(Point target) {
-            Point cellPosition = Map.GetCellPosition(position);
+            Tile targetTile = parentScene.Map.GetTile(target);
+            if (targetTile == null || targetTile.blocked || parentScene.Map.IsBlockedByEntity(target)) {
+                return;
+            }
+
+            Point cellPosition = Map.GetCellPosition(Position);
             Point targetCellPosition = target;
 
             PathFinder pf = new PathFinder(cellPosition, targetCellPosition, parentScene.Map);
             movementPath = pf.FindPath();
-            moving = true;
+
+            if (movementPath.Length <= Stats.ActionPoints) {
+                Stats.ActionPoints -= movementPath.Length;
+                moving = true;
+            }
         }
 
         protected virtual void FinishedMovement() {

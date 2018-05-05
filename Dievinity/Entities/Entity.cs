@@ -3,22 +3,34 @@ using Dievinity.Maps;
 using Dievinity.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Dievinity.Entities {
-    public abstract class Entity {
+    public abstract class Entity : IComparable<Entity> {
 
         protected Scene parentScene;
 
         public Vector2 position;
+        public Vector2 Position {
+            get { return position; }
+            set { position = value; }
+        }
 
         protected Texture2D texture;
+
+        protected Stats stats;
+        public Stats Stats {
+            get { return stats; }
+            set { stats = value; }
+        }
 
         public bool turnFinished;
 
         public Entity(Scene parentScene) {
             this.parentScene = parentScene;
-            position = Vector2.Zero;
+            Position = Vector2.Zero;
             turnFinished = true;
+            stats = new Stats();
         }
 
         public Entity(Scene parentScene, Vector2 position, Texture2D texture) {
@@ -26,6 +38,7 @@ namespace Dievinity.Entities {
             this.position = position;
             this.texture = texture;
             turnFinished = true;
+            stats = new Stats();
         }
 
         public Entity(Scene parentScene, Point position, Texture2D texture) {
@@ -33,6 +46,7 @@ namespace Dievinity.Entities {
             this.position = Map.GetActualPosition(position);
             this.texture = texture;
             turnFinished = true;
+            stats = new Stats();
         }
 
         public virtual void Update(GameTime gameTime) {
@@ -45,7 +59,7 @@ namespace Dievinity.Entities {
 
         public virtual void Draw(SpriteBatch spriteBatch) {
             if (texture != null) {
-                Point screenPosition = (position - Camera.Instance.position).ToPoint();
+                Point screenPosition = (Position - Camera.Instance.position).ToPoint();
                 Rectangle destination = new Rectangle(screenPosition.X, screenPosition.Y, texture.Width * 3, texture.Height * 3);
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
@@ -54,6 +68,10 @@ namespace Dievinity.Entities {
 
                 spriteBatch.End();
             }
+        }
+
+        public int CompareTo(Entity other) {
+            return Stats.CompareTo(other.Stats);
         }
     }
 }
