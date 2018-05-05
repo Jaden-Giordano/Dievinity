@@ -39,27 +39,29 @@ namespace Dievinity {
             AtlasManager.Instance.SaveAtlas("Debug", new Atlas(debugTexture, 16));
 
             Texture2D playerTexture = Content.Load<Texture2D>("Entities/Player");
+            Texture2D enemyTexture = Content.Load<Texture2D>("Entities/Enemy");
 
             MapFile map = Content.Load<MapFile>("Maps/larger");
             MapManager.Instance.SaveMap("test", map);
 
             TurnBasedScene turnBased = new TurnBasedScene(MapManager.Instance.GetMap("test"));
             Player player = new Player(turnBased, new Point(1, 1), playerTexture);
+            Enemy enemy = new Enemy(turnBased, new Point(5, 4), enemyTexture);
 
-            turnBased.AddEntities(new Entity[] { player });
+            turnBased.AddEntities(new Entity[] { player, enemy });
 
-            SceneManger.Instance.AddScene("TurnBasedScene", turnBased);
-            SceneManger.Instance.SetCurrent("TurnBasedScene");
+            SceneManager.Instance.AddScene("TurnBasedScene", turnBased);
+            SceneManager.Instance.SetCurrent("TurnBasedScene");
         }
 
         protected void Begin() {
-            SceneManger.Instance.Begin();
+            SceneManager.Instance.Begin();
         }
 
         protected void Input(GameTime gameTime) {
             InputManager.Instance.ProcessInput();
 
-            SceneManger.Instance.Input(gameTime);
+            SceneManager.Instance.Input(gameTime);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -73,7 +75,7 @@ namespace Dievinity {
 
             Input(gameTime);
 
-            SceneManger.Instance.Update(gameTime);
+            SceneManager.Instance.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -81,7 +83,7 @@ namespace Dievinity {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            SceneManger.Instance.Draw(spriteBatch);
+            SceneManager.Instance.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }

@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace Dievinity.Managers {
-    public class SceneManger {
+    public class SceneManager {
 
-        private static SceneManger instance;
-        public static SceneManger Instance {
+        private static SceneManager instance;
+        public static SceneManager Instance {
             get {
                 if (instance == null) {
-                    instance = new SceneManger();
+                    instance = new SceneManager();
                 }
 
                 return instance;
@@ -21,7 +21,7 @@ namespace Dievinity.Managers {
         private Dictionary<string, Scene> scenes;
         private string currentScene;
 
-        private SceneManger() {
+        private SceneManager() {
             scenes = new Dictionary<string, Scene>();
         }
 

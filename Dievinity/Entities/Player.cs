@@ -9,54 +9,24 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Dievinity.Entities {
-    public class Player : Entity {
+    public class Player : MovingEntity {
 
         private Point ghostStart;
         private Point[] ghostPath;
         private Point ghostDestination;
         private GhostLayer ghost;
 
-        private bool moving;
-        private Point[] movementPath;
-
         public Player(Scene parentScene, Point position, Texture2D texture) : base(parentScene, position, texture) {
             this.ghost = new GhostLayer(100, 100);
 
             turnFinished = false;
-            moving = false;
         }
 
-        private void FinishTurn() {
+        protected override void FinishedMovement() {
+            base.FinishedMovement();
+
             if (!turnFinished) {
-                turnFinished = false;
-            }
-            moving = false;
-
-            movementPath = null;
-        }
-
-        public override void Update(GameTime gameTime) {
-            base.Update(gameTime);
-
-            if (moving) {
-                if (movementPath.Length > 0) {
-                    if (Vector2.Distance(position, Map.GetActualPosition(movementPath[0])) <= 2.5f) {
-                        position = Map.GetActualPosition(movementPath[0]);
-
-                        List<Point> tmp = new List<Point>(movementPath);
-                        tmp.RemoveAt(0);
-                        movementPath = tmp.ToArray();
-                    }
-
-                    if (movementPath.Length > 0) {
-                        Vector2 direction = Vector2.Normalize(Map.GetActualPosition(movementPath[0]) - position);
-                        position += direction * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    } else {
-                        FinishTurn();
-                    }
-                } else {
-                    FinishTurn();
-                }
+                turnFinished = true;
             }
         }
 
@@ -77,10 +47,8 @@ namespace Dievinity.Entities {
                     ghost.DrawPath(ghostPath, 0);
                 }
 
-                if (!moving && InputManager.Instance.GetMouseReleased(MouseButtons.Left)) {
-                    PathFinder pf = new PathFinder(playerCellPosition, mouseCellPosition, parentScene.Map);
-                    movementPath = pf.FindPath();
-                    moving = true;
+                if (InputManager.Instance.GetMouseReleased(MouseButtons.Left)) {
+                    ExecuteMovement(Map.GetCellPosition(Mouse.GetState().Position.ToVector2() - Camera.Instance.position));
 
                     ghost.Clear();
                 }

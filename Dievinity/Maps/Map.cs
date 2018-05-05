@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Dievinity.Entities;
+using Dievinity.Managers;
+using Microsoft.Xna.Framework;
 
 namespace Dievinity.Maps {
     public class Map {
@@ -29,6 +31,17 @@ namespace Dievinity.Maps {
 
             Point arrayCoords = ToArrayCoords(position);
             return tiles[arrayCoords.X, arrayCoords.Y];
+        }
+
+        public bool IsBlockedByEntity(Point position) {
+            bool blocked = false;
+            foreach (Entity e in SceneManager.Instance.GetCurrent().Entities) {
+                if (Map.GetCellPosition(e.position) == position) {
+                    blocked = true;
+                    break;
+                }
+            }
+            return blocked;
         }
 
         public void SetTile(Point position, Tile tile) {

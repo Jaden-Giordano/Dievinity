@@ -1,6 +1,8 @@
-﻿using Dievinity.Maps;
+﻿using Dievinity.Entities;
+using Dievinity.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Dievinity.Scenes {
     public class Scene {
@@ -8,12 +10,34 @@ namespace Dievinity.Scenes {
         protected Map map;
         public Map Map {
             get {
-                return map      ;
+                return map;
+            }
+        }
+
+        protected List<Entity> entities;
+        public Entity[] Entities {
+            get {
+                return entities.ToArray();
             }
         }
 
         public Scene(Map map) {
             this.map = map;
+            entities = new List<Entity>();
+        }
+
+        public void AddEntities(Entity[] entities) {
+            this.entities.AddRange(entities);
+        }
+
+        public Player GetPlayer() {
+            foreach (Entity e in entities) {
+                if (e is Player) {
+                    return e as Player;
+                }
+            }
+
+            return null;
         }
 
         public virtual void Begin() {

@@ -2,12 +2,11 @@
 using Dievinity.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace Dievinity.Scenes {
     public class TurnBasedScene : Scene {
-
-        public List<Entity> entities;
 
         private int currentTurn;
 
@@ -19,10 +18,6 @@ namespace Dievinity.Scenes {
             currentTurn = 0;
         }
 
-        public void AddEntities(Entity[] entities) {
-            this.entities.AddRange(entities);
-        }
-
         public override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
@@ -30,6 +25,7 @@ namespace Dievinity.Scenes {
 
             if (current.turnFinished) {
                 currentTurn = (currentTurn + 1) % entities.Count;
+                entities[currentTurn].turnFinished = false;
             } else {
                 current.TurnUpdate(gameTime);
             }
